@@ -10,6 +10,8 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "students")
@@ -29,6 +31,10 @@ public class Student {
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     @JsonManagedReference
     private Address address;
+
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<Assignment> assignments = new ArrayList<>();
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
