@@ -4,24 +4,26 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
-@Table(name = "addresses")
+@Table(name = "courses")
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class Address {
+public class Course {
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String street;
-    private String zipCode;
-    private String city;
+    private String code;
+    private String name;
 
-    @OneToOne(mappedBy = "address")
-    @JsonBackReference(value = "student-address")
-    private Student student;
+    @ManyToMany(mappedBy = "courses", fetch = FetchType.LAZY)
+    @JsonBackReference(value = "student-course")
+    private Set<Student> students = new HashSet<>();
 }

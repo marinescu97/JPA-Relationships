@@ -15,4 +15,8 @@ public interface StudentMapper {
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "address", qualifiedBy = MappingQualifiers.PatchMapping.class)
     void patchStudentFromDto(StudentDto dto, @MappingTarget Student student);
+
+    StudentDto toDto(Student student);
+
+    Student toEntity(StudentDto dto);
 }
