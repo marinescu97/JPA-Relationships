@@ -1,12 +1,12 @@
 package com.spring.JpaRelationships.dto;
 
+import lombok.Builder;
 import lombok.Data;
-import lombok.ToString;
 
 import java.io.Serializable;
 
 @Data
-@ToString
+@Builder
 public class AddressDto implements Serializable {
     private String street;
     private String zipCode;
