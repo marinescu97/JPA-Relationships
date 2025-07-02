@@ -1,12 +1,12 @@
 package com.spring.JpaRelationships.dto;
 
+import lombok.Builder;
 import lombok.Data;
-import lombok.ToString;
 
 import java.io.Serializable;
 
 @Data
-@ToString
+@Builder
 public class StudentDto implements Serializable {
     private String name;
     private String email;
